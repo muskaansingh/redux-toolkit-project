@@ -1,9 +1,18 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import headphoneImg from "../assets/headphones.jpeg";
 import { addItem, removeItem } from "../redux/slice";
+import { fetchProducts } from "../redux/ProductSlice";
+import { useEffect } from "react";
 
 const ProductCard = () => {
   const dispatch = useDispatch(); //dispatch -> send data to the store
+  const selector = useSelector((state) => state.products.items);
+  console.log("selector", selector);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
   return (
     <div className="product-card">
       <img src={headphoneImg} alt="Product" className="product-img" />
