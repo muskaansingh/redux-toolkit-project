@@ -199,57 +199,113 @@ body {
   font-size: 15px;
 }
 
-/* Cart dropdown */
-.cart-panel {
-  position: absolute;
-  right: 20px;
-  top: 64px;
-  width: 320px;
-  background: white;
+/* Cart Page Layout */
+.cart-page {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.cart-page-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* Cart items container */
+.cart-list {
+  background: #fff;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
-  padding: 12px;
-  border: 1px solid rgba(15, 23, 42, 0.04);
-  display: none;
+  padding: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 4px 20px rgba(2, 6, 23, 0.06);
 }
-.cart-panel.show {
-  display: block;
-}
+
+/* Each item */
 .cart-item {
   display: flex;
-  gap: 12px;
-  align-items: center;
-  padding: 8px;
-  border-radius: 8px;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
 }
-.cart-item + .cart-item {
-  border-top: 1px dashed rgba(15, 23, 42, 0.04);
+
+.cart-item:last-child {
+  border-bottom: none;
 }
+
 .thumb {
-  width: 56px;
-  height: 56px;
+  width: 80px;
+  height: 80px;
   border-radius: 8px;
   background: #eef2ff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
+  font-size: 20px;
   color: var(--accent-2);
 }
+
 .item-info {
   flex: 1;
 }
+
 .item-title {
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 600;
   margin: 0;
 }
+
 .item-meta {
-  font-size: 13px;
+  font-size: 14px;
+  margin-top: 6px;
   color: var(--muted);
-  margin-top: 4px;
 }
+
 .price {
+  font-size: 16px;
   font-weight: 700;
+}
+
+/* Summary Footer */
+.cart-summary {
+  margin-top: 24px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 4px 20px rgba(2, 6, 23, 0.06);
+}
+
+.cart-summary-total {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.cart-summary-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.view-cart,
+.checkout {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.view-cart {
+  background: #e2e8f0;
+}
+
+.checkout {
+  background: #4f46e5;
+  color: white;
 }
 
 .cart-footer {
