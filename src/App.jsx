@@ -9,7 +9,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <div className="app-header">
+      {/* <div className="app-header">
         <h1>Redux Toolkit Project</h1>
         <button
           onClick={() => dispatch(removeAllItem())}
@@ -17,7 +17,7 @@ const App = () => {
         >
           Remove ALL Items
         </button>
-      </div>
+      </div> */}
 
       <ProductCart />
     </>

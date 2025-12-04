@@ -6,7 +6,7 @@ import { useEffect } from "react";
 const ProductCard = () => {
   const dispatch = useDispatch(); //dispatch -> send data to the store
   const productSelector = useSelector((state) => state.products.items);
-  console.log("selector", productSelector);
+  const cartSelector = useSelector((state) => state.cart.items);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -14,7 +14,7 @@ const ProductCard = () => {
 
   return (
     <div className="grid-card">
-      {productSelector.length &&
+      {Array.isArray(productSelector) &&
         productSelector.map((product) => (
           <div key={product.id} className="product-card">
             <img
@@ -31,19 +31,21 @@ const ProductCard = () => {
               <p className="product-rating">{product.rating}</p>
 
               <div className="product-actions">
-                <button
-                  onClick={() => dispatch(addItem(1))}
-                  className="add-btn"
-                >
-                  Add to Cart
-                </button>
-
-                <button
-                  onClick={() => dispatch(removeItem(1))}
-                  className="add-btn remove-cart"
-                >
-                  Remove from Cart
-                </button>
+                {cartSelector.find((item) => item.id === product.id) ? (
+                  <button
+                    onClick={() => dispatch(removeItem(product.id))}
+                    className="add-btn remove-cart"
+                  >
+                    Remove from Cart
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => dispatch(addItem(product))}
+                    className="add-btn"
+                  >
+                    Add to Cart
+                  </button>
+                )}
               </div>
             </div>
           </div>
