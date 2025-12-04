@@ -1,46 +1,53 @@
 import { useDispatch, useSelector } from "react-redux";
-import headphoneImg from "../assets/headphones.jpeg";
 import { addItem, removeItem } from "../redux/slice";
 import { fetchProducts } from "../redux/ProductSlice";
 import { useEffect } from "react";
 
 const ProductCard = () => {
   const dispatch = useDispatch(); //dispatch -> send data to the store
-  const selector = useSelector((state) => state.products.items);
-  console.log("selector", selector);
+  const productSelector = useSelector((state) => state.products.items);
+  console.log("selector", productSelector);
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
   return (
-    <div className="product-card">
-      <img src={headphoneImg} alt="Product" className="product-img" />
+    <div className="grid-card">
+      {productSelector.length &&
+        productSelector.map((product) => (
+          <div key={product.id} className="product-card">
+            <img
+              src={product.thumbnail}
+              alt={product.title}
+              className="product-img"
+            />
 
-      <div className="product-content">
-        <h2 className="product-title">Wireless Headphones</h2>
+            <div className="product-content">
+              <h2 className="product-title">{product.title}</h2>
+              <p className="product-brand">{product.brand}</p>
+              <p className="product-price">${product.price}</p>
+              {/* <p className="product-desc">{product.description}</p> */}
+              <p className="product-rating">{product.rating}</p>
 
-        <p className="product-price">$129.99</p>
+              <div className="product-actions">
+                <button
+                  onClick={() => dispatch(addItem(1))}
+                  className="add-btn"
+                >
+                  Add to Cart
+                </button>
 
-        <p className="product-desc">
-          Experience high-quality sound with these wireless headphones.
-          Featuring noise cancellation, long-lasting battery life, and a sleek
-          modern design for everyday use.
-        </p>
-
-        <div className="product-actions">
-          <button onClick={() => dispatch(addItem(1))} className="add-btn">
-            Add to Cart
-          </button>
-
-          <button
-            onClick={() => dispatch(removeItem(1))}
-            className="add-btn remove-cart"
-          >
-            Remove from Cart
-          </button>
-        </div>
-      </div>
+                <button
+                  onClick={() => dispatch(removeItem(1))}
+                  className="add-btn remove-cart"
+                >
+                  Remove from Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
     </div>
   );
 };

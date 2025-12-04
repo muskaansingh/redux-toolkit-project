@@ -306,3 +306,10 @@ body {
 .remove-cart:hover {
   background-color: #af3838;
 }
+
+.grid-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
