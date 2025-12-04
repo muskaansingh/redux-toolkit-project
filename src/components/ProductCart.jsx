@@ -33,7 +33,7 @@ const ProductCard = () => {
               <div className="product-actions">
                 {cartSelector.find((item) => item.id === product.id) ? (
                   <button
-                    onClick={() => dispatch(removeItem(product.id))}
+                    onClick={() => dispatch(removeItem(product))}
                     className="add-btn remove-cart"
                   >
                     Remove from Cart
