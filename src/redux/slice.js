@@ -27,10 +27,18 @@ const addTocart = createSlice({
       //   state.value = 0;
       state.items = [];
     },
+    updateQuantity: (state, action) => {
+      const { id, quantity } = action.payload;
+      state.items = state.items.map((item) =>
+        item.id === id ? { ...item, quantity } : item
+      );
+      localStorage.setItem("cartItems", JSON.stringify(state.items));
+    },
   },
 });
 
 console.log("initialState", initialState);
 
-export const { addItem, removeItem, removeAllItem } = addTocart.actions;
+export const { addItem, removeItem, removeAllItem, updateQuantity } =
+  addTocart.actions;
 export default addTocart.reducer; // we have to patch this reducer in store.js

@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { removeAllItem, removeItem } from "../redux/slice";
+import { removeAllItem, removeItem, updateQuantity } from "../redux/slice";
 
 const CartListing = () => {
   const cartSelector = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [cartItems, setCartItems] = useState(cartSelector);
 
+  const [cartItems, setCartItems] = useState(cartSelector);
   useEffect(() => {
     setCartItems(cartSelector);
   }, [cartSelector]);
-
-  console.log("cartSelector", cartSelector);
 
   // Calculate total price
   const totalPrice = cartItems.reduce(
@@ -31,6 +29,7 @@ const CartListing = () => {
     });
 
     setCartItems(cartTempItems);
+    dispatch(updateQuantity({ id, quantity }));
   };
 
   const handleOrderPlaced = () => {
