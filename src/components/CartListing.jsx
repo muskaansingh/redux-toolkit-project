@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { removeItem } from "../redux/slice";
+import { Link, useNavigate } from "react-router-dom";
+import { removeAllItem, removeItem } from "../redux/slice";
 
 const CartListing = () => {
   const cartSelector = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState(cartSelector);
 
   useEffect(() => {
@@ -30,6 +31,13 @@ const CartListing = () => {
     });
 
     setCartItems(cartTempItems);
+  };
+
+  const handleOrderPlaced = () => {
+    localStorage.clear();
+    dispatch(removeAllItem());
+    alert("Order placed successfully!");
+    navigate("/");
   };
 
   return (
@@ -93,11 +101,8 @@ const CartListing = () => {
               <button className="view-cart">Continue Shopping</button>
             </Link>
 
-            <button
-              className="checkout"
-              onClick={() => alert("Proceed to Checkout")}
-            >
-              Checkout
+            <button className="checkout" onClick={handleOrderPlaced}>
+              Place Order
             </button>
           </div>
         </div>
