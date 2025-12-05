@@ -210,6 +210,15 @@ body {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  div {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--muted);
+    display: flex;
+    align-items: anchor-center;
+  }
 }
 
 /* Cart items container */
@@ -281,6 +290,7 @@ body {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 16px;
+  color: #478639;
 }
 
 .cart-summary-buttons {
@@ -368,4 +378,58 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 20px;
   padding: 20px;
+}
+
+/* Item actions container */
+.item-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+/* Quantity input */
+.qty-input {
+  width: 105px;
+  padding: 8px 10px;
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  border-radius: 8px;
+  font-size: 10px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.qty-input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* Price inside action row */
+.qty-price {
+  font-weight: 700;
+  font-size: 16px;
+  min-width: 80px;
+  text-align: right;
+  color: #478639;
+}
+
+/* Remove button */
+.remove-item {
+  padding: 8px 14px;
+  background: #fee2e2;
+  color: #b91c1c;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.remove-item:hover {
+  background: #fecaca;
+}
+
+.remove-item:active {
+  transform: scale(0.97);
 }
